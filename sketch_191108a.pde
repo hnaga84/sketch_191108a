@@ -67,6 +67,7 @@ class Circle {
   float speed;
   float explode_point_x;
   float explode_point_y;
+  float r,g,b;
 
   Circle() {
     this.balls_num = 8;
@@ -89,9 +90,9 @@ class Circle {
       balls.get(i).y = this.explode_point_y;
       balls.get(i).height = 5;
       balls.get(i).width = 5;
-      balls.get(i).r = random(0, 255);
-      balls.get(i).g = random(0, 255);
-      balls.get(i).b = random(0, 255);
+      balls.get(i).r = this.r;
+      balls.get(i).g = this.g;
+      balls.get(i).b = this.b;
       println((float)i / 8);
       balls.get(i).vx = this.speed*cos(((float)i/this.balls.size())*3.14*2);
       balls.get(i).vy = this.speed*sin(((float)i/this.balls.size())*3.14*2);
@@ -137,6 +138,7 @@ class Circle {
 
 class Fireworks {
   Ball origin;
+  float r,g,b;
   int circle_num = 5;
   float explode_point;
   Circle[] circles;
@@ -144,7 +146,10 @@ class Fireworks {
   Fireworks() {
     this.origin = new Ball();
     //this.circles = {new Circle(), new Circle()}
-    origin.vy = -1;
+    origin.r = random(0, 255);
+    origin.g = random(0, 255);
+    origin.b = random(0, 255);
+    origin.vy = -1000;
     origin.vx = 0;
     origin.ay = 0;
     origin.ax = 0;
@@ -165,6 +170,9 @@ class Fireworks {
       this.circles[i].setSpeed(10);
       this.circles[i].setAccel(accel);
       this.circles[i].setExplodePoint(this.origin.x, this.explode_point);
+      this.circles[i].r = this.origin.r;
+      this.circles[i].g = this.origin.g;
+      this.circles[i].b = this.origin.b;
       this.circles[i] .setBalls();
     }
   }
