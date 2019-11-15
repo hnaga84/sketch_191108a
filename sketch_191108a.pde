@@ -37,7 +37,7 @@ class Ball {
     ellipse(x, y, width , height);
   }
   
-  void setVisible(){
+  void setVisible(){ 
        if (-0.5 < this.vx && this.vx < 0.5 && -0.5 < this.vy  &&  this.vy < 0.5){
          this.visible = false;
        }
@@ -238,6 +238,8 @@ void setup() {
 //  circle.draw();
 //}
 
+ArrayList<Fireworks> fw_list = new ArrayList<Fireworks>();
+
 void draw() {
 
   background(0, 0, 0);
@@ -253,12 +255,29 @@ void draw() {
   //print(circle.explode_point_x);
   //print(circle.explode_point_y);
   
-  fw.play();
-  fw2.play();
+  //fw.play();
+  //fw2.play();
   //ball.move();
   //ball.draw();
   //circle.draw();
   //print(circle.explode_point_x);
   //print(circle.explode_point_y);
   //print(circle.balls.get(0).vx);
+  
+  if (fw_list.size() == 0){
+      
+  }
+  else{
+      for (int i = 0; i < fw_list.size(); i++){
+        fw_list.get(i).play(); 
+      }
+  }
+  float num  = random(0, 250);
+  if (num < 10){
+    Fireworks fw = new Fireworks();
+    fw.explode_point = random(0, 500);
+    fw.setOrigin(random(0, 500), 500f, 10.0f, 10.0f); 
+    fw.setCircles();
+    fw_list.add(fw);
+  }
 }
