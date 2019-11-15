@@ -5,6 +5,7 @@ class Ball {
   float col;
   float ax, ay;
   boolean visible;
+  boolean enableGravity;
 
   Ball() {
     this.col = 125;
