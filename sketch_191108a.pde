@@ -3,12 +3,16 @@ class Ball {
   float width, height;
   float vx, vy;
   float col;
+  float r, g, b;
   float ax, ay;
   boolean visible;
   boolean enableGravity;
 
   Ball() {
-    this.col = 125;
+    this.r = 150;
+    this.b = 150;
+    this.g = 150;
+    this.visible = true;
   }
 
   void move() { // 花火の移動を担う。呼ばれるたびに移動する。
@@ -21,23 +25,21 @@ class Ball {
   void draw() {
     this.setVisible();
     if (visible){
-      fill(col);
+      
     }
     else{
-      this.destroy();
+         this.destroy();
     }
     //if (-1.0 <= this.vx  && this.vx <= 1.0 && 1.0 <=  this.vy && this.vy <= 1.0){
     //  fill(0);
     //}
-    ellipse(x, y, width, height);
+    fill(r, g, b);
+    ellipse(x, y, width , height);
   }
   
   void setVisible(){
        if (-0.5 < this.vx && this.vx < 0.5 && -0.5 < this.vy  &&  this.vy < 0.5){
          this.visible = false;
-       }
-       else{
-         this.visible = true;
        }
   }
   
@@ -51,7 +53,10 @@ class Ball {
   }
 
   void destroy() {
-    this.col = 0;
+    this.r = 0;
+    this.b = 0;
+    this.g = 0;
+    
   }
 }
 
@@ -84,6 +89,9 @@ class Circle {
       balls.get(i).y = this.explode_point_y;
       balls.get(i).height = 5;
       balls.get(i).width = 5;
+      balls.get(i).r = random(0, 255);
+      balls.get(i).g = random(0, 255);
+      balls.get(i).b = random(0, 255);
       println((float)i / 8);
       balls.get(i).vx = this.speed*cos(((float)i/this.balls.size())*3.14*2);
       balls.get(i).vy = this.speed*sin(((float)i/this.balls.size())*3.14*2);
