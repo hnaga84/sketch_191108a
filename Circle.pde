@@ -9,7 +9,7 @@ class Circle {
   boolean dead;
 
   Circle() { // ballの数と、ballsリストにインスタンス(プロパティ未設定)を入れておく。
-    this.balls_num = 16;
+    this.balls_num = 32;
     initBalls();
   }
 

@@ -1,12 +1,27 @@
- //<>//
+import ddf.minim.*; //<>//
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+import java.util.*;
+
+Minim minim;
+//static AudioPlayer player;
+
+
 Fireworks fw;
 int WINDOW_WIDTH = 1000;
 int WINDOW_HEIGHT = 1000;
 
 void setup() {
+    minim = new Minim(this);
+    //player = minim.loadFile("hanabisakuretu.mp3");
     
+  
     size(1000, 1000);
     background(0, 0, 0);
+    //player.play();
     //fw = new Fireworks();
     //fw.explode_point = random(0, 500); //  爆発地点を設定
     //fw.setOriginPointAndSize(random(0, 500), 500f, 10.0f, 10.0f);  // originのサイズと座標を設定
@@ -15,6 +30,7 @@ void setup() {
 
 
 ArrayList<Fireworks> fw_list = new ArrayList<Fireworks>(); // 花火のインスタンスが格納される。
+Iterator<Fireworks> iterator = fw_list.iterator();
 ArrayList<Integer> dead_fw_list_index = new ArrayList<Integer>(); // 死んだ花火のインデックスを格納する
 float generate_probability = 1; // 一度のdraw処理の中で、花火が生み出される確率。出現頻度を変えたいときはここをいじる
 

@@ -1,3 +1,13 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+import java.util.*;
+
+
+
 class Fireworks {
   Ball origin; 
   float r,g,b; 
@@ -5,10 +15,13 @@ class Fireworks {
   float explode_point; // 爆発地点
   Circle[] circles;
   boolean dead;
+  //Minim minim;
+  AudioPlayer player;
 
   Fireworks() { // originの定義。circlesリストにインスタンス(プロパティ未設定)をとりあえずcircle_num分作っとく
+    //this.minim = new Minim(this);
+    this.player =  minim.loadFile("hanabisakuretu.mp3");
     this.origin = new Ball();
-    //this.circles = {new Circle(), new Circle()}
     origin.r = random(0, 255);
     origin.g = random(0, 255);
     origin.b = random(0, 255);
@@ -54,6 +67,7 @@ class Fireworks {
     } else if (this.origin.y == explode_point) { // 
       origin.draw();
     } else {
+       player.play();
       this.explode();
     }
   }
